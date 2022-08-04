@@ -8,35 +8,36 @@ const sliderLabel = document.querySelector("label");
 const slider = document.querySelector("#slider");
 let rowSize = slider.value;
 let mouseDown = false;
-let currentColor = colorBtn.value;
-let rainbow = false;
+let defaultColor = colorBtn.value;
+let currentColor = defaultColor;
+let eraserColor = eraserBtn.value;
+let rainbowActive = false;
 
 window.addEventListener("mousedown", () => {
   mouseDown = true;
-  console.log(mouseDown);
 });
 
 window.addEventListener("mouseup", () => {
   mouseDown = false;
-  console.log(mouseDown);
 });
 
 colorBtn.addEventListener("click", (e) => {
-  rainbow = false;
-  currentColor = e.target.value;
+  rainbowActive = false;
+  currentColor = defaultColor;
 });
 
 rainbowBtn.addEventListener("click", () => {
-  if (rainbow) {
-    rainbow = false;
+  if (rainbowActive) {
+    rainbowActive = false;
+    currentColor = defaultColor;
   } else {
-    rainbow = true;
+    rainbowActive = true;
   }
 });
 
 eraserBtn.addEventListener("click", (e) => {
-  rainbow = false;
-  currentColor = e.target.value;
+  rainbowActive = false;
+  currentColor = eraserColor;
 });
 
 resetBtn.addEventListener("click", () => {
@@ -56,7 +57,6 @@ updateSliderLabel();
 
 function createGrid(rowSize) {
   let boxWidth = calculateWidth(rowSize, canvasWidth);
-  console.log(boxWidth);
   let totalBoxes = rowSize ** 2;
   for (let i = 0; i < totalBoxes; i++) {
     let newBox = document.createElement("div");
@@ -83,13 +83,23 @@ function calculateWidth(numBoxes, width) {
 }
 
 function singleColor(e) {
-  if (rainbow) currentColor = "red";
+  if (rainbowActive) currentColor = randomColor();
   e.target.style.backgroundColor = currentColor;
 }
 
 function hoverColor(e) {
-  if (rainbow) currentColor = "green";
+  if (rainbowActive) currentColor = randomColor();
   if (mouseDown) e.target.style.backgroundColor = currentColor;
+}
+
+function randomColor() {
+  let max = 250;
+  let rgb = [];
+  for (let i = 0; i < 3; i++) {
+    let num = Math.floor(Math.random() * max);
+    rgb.push(num);
+  }
+  return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
 }
 
 function updateSliderLabel() {
