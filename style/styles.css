@@ -4,14 +4,13 @@
 
 .canvas-container {
   padding: 0;
-  border: 1px solid black;
+  box-shadow: 1px 1px 5px black, -1px -1px 5px black;
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
 }
 
 .canvas-box {
-  border: 1px solid black;
   margin: 0;
 }
