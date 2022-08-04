@@ -7,11 +7,12 @@ const resetBtn = document.querySelector("#reset");
 const sliderLabel = document.querySelector("label");
 const slider = document.querySelector("#slider");
 let rowSize = slider.value;
-let mouseDown = false;
+let activeBtn = colorBtn;
 let defaultColor = colorBtn.value;
 let currentColor = defaultColor;
 let eraserColor = eraserBtn.value;
 let rainbowActive = false;
+let mouseDown = false;
 
 window.addEventListener("mousedown", () => {
   mouseDown = true;
@@ -21,12 +22,14 @@ window.addEventListener("mouseup", () => {
   mouseDown = false;
 });
 
-colorBtn.addEventListener("click", (e) => {
+colorBtn.addEventListener("click", () => {
+  setActiveBtn(colorBtn);
   rainbowActive = false;
   currentColor = defaultColor;
 });
 
 rainbowBtn.addEventListener("click", () => {
+  setActiveBtn(rainbowBtn);
   if (rainbowActive) {
     rainbowActive = false;
     currentColor = defaultColor;
@@ -35,14 +38,19 @@ rainbowBtn.addEventListener("click", () => {
   }
 });
 
-eraserBtn.addEventListener("click", (e) => {
+eraserBtn.addEventListener("click", () => {
+  setActiveBtn(eraserBtn);
   rainbowActive = false;
   currentColor = eraserColor;
 });
 
 resetBtn.addEventListener("click", () => {
+  setActiveBtn(resetBtn);
+  rainbowActive = false;
+  currentColor = defaultColor;
   destroyGrid();
   createGrid(rowSize);
+  setTimeout(resetBtnBlink, 300);
 });
 
 slider.addEventListener("input", updateSliderLabel);
@@ -105,4 +113,20 @@ function randomColor() {
 function updateSliderLabel() {
   rowSize = slider.value;
   sliderLabel.textContent = `${rowSize} X ${rowSize}`;
+}
+
+function setActiveBtn(btn) {
+  if (activeBtn === null) {
+    activeBtn = btn;
+    activeBtn.classList.add("active");
+  } else {
+    activeBtn.classList.remove("active");
+    activeBtn = btn;
+    activeBtn.classList.add("active");
+  }
+}
+
+function resetBtnBlink() {
+  resetBtn.classList.remove("active");
+  setActiveBtn(colorBtn);
 }
