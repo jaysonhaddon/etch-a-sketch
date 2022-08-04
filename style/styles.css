@@ -2,9 +2,45 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  gap: 100px;
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+.sidebar {
+  box-shadow: 1px 1px 5px black, -1px -1px 5px black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  height: 500px;
+  width: 200px;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .canvas-container {
   padding: 0;
   box-shadow: 1px 1px 5px black, -1px -1px 5px black;
+  flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
   width: 500px;

@@ -12,23 +12,30 @@
       <h1>Etch-A-Sketch</h1>
     </header>
     <main>
+      <div class="sidebar">
+        <button id="color" value="black">Color</button>
+        <button id="rainbow">Rainbow</button>
+        <button id="eraser" value="white">Eraser</button>
+        <button id="reset">Clear</button>
+        <div class="slider-container">
+          <label for="slider"></label>
+          <input
+            type="range"
+            name="slider"
+            id="slider"
+            min="1"
+            max="64"
+            value="16"
+          />
+        </div>
+      </div>
       <div class="canvas-container"></div>
-      <button id="color" value="black">Color</button>
-      <button id="rainbow">Rainbow</button>
-      <button id="eraser" value="white">Eraser</button>
-      <button id="reset">Clear</button>
-      <label for="slider"></label>
-      <input
-        type="range"
-        name="slider"
-        id="slider"
-        min="1"
-        max="64"
-        value="16"
-      />
     </main>
     <footer>
-      <p>Created by Jayson Haddon</p>
+      <p>
+        Created by Jayson Haddon
+        <span><a href="https://github.com/jaysonhaddon">GitHub</a></span>
+      </p>
     </footer>
     <script src="./script/script.js"></script>
   </body>
