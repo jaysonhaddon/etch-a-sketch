@@ -1,5 +1,5 @@
 const canvasContainer = document.querySelector(".canvas-container");
-const canvasWidth = canvasContainer.offsetWidth;
+const canvasWidth = 500;
 const colorBtn = document.querySelector("#color");
 const rainbowBtn = document.querySelector("#rainbow");
 const eraserBtn = document.querySelector("#eraser");
