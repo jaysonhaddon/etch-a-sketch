@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 :root {
-  --main-bg-color: #eae3d2;
-  --head-foot-color: #1c3879;
-  --sidebar-color: #607eaa;
-  --light-font-color: #f9f5eb;
+  --main-bg-color: #dff6ff;
+  --head-foot-color: #06283d;
+  --sidebar-color: #47b5ff;
+  --light-font-color: white;
 }
 
 * {
@@ -43,7 +43,12 @@ h1 {
 }
 
 footer {
-  font-size: 20px;
+  font-size: 24px;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--head-foot-color);
 }
 
 .sidebar {
@@ -97,7 +102,7 @@ button {
 }
 
 .active {
-  background-color: #1c3879;
+  background-color: var(--head-foot-color);
   color: var(--light-font-color);
   transform: scale(1.25);
 }

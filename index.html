@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="./script/script.js" defer></script>
     <title>Etch-a-Sketch</title>
   </head>
@@ -16,11 +23,11 @@
       <div class="sidebar">
         <div class="color-container">
           <label for="colorpicker">Color Selector</label>
-          <input type="color" id="colorpicker" value="black" />
+          <input type="color" id="colorpicker" value="#000000" />
         </div>
         <button id="color" class="active" value="black">Color Pen</button>
         <button id="rainbow">Rainbow Pen</button>
-        <button id="eraser" value="#f9f5eb">Eraser</button>
+        <button id="eraser" value="white">Eraser</button>
         <button id="reset">Reset</button>
         <div class="slider-container">
           <label id="slider-label" for="slider"></label>
@@ -39,7 +46,9 @@
     <footer>
       <p>
         Created by Jayson Haddon
-        <span><a href="https://github.com/jaysonhaddon">GitHub</a></span>
+                <a href="https://github.com/jaysonhaddon"
+          ><i class="fa-brands fa-github fa-lg"></i
+        ></a></span>
       </p>
     </footer>
   </body>
