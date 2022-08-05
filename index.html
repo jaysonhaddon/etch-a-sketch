@@ -5,20 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/styles.css" />
-    <title>Etch-A-Sketch</title>
+    <script src="./script/script.js" defer></script>
+    <title>Etch-a-Sketch</title>
   </head>
   <body>
     <header>
-      <h1>Etch-A-Sketch</h1>
+      <h1>Etch-a-Sketch</h1>
     </header>
     <main>
       <div class="sidebar">
-        <button id="color" class="active" value="black">Black Pen</button>
+        <div class="color-container">
+          <label for="colorpicker">Color Selector</label>
+          <input type="color" id="colorpicker" value="black" />
+        </div>
+        <button id="color" class="active" value="black">Color Pen</button>
         <button id="rainbow">Rainbow Pen</button>
-        <button id="eraser" value="white">Eraser</button>
+        <button id="eraser" value="#f9f5eb">Eraser</button>
         <button id="reset">Reset</button>
         <div class="slider-container">
-          <label for="slider"></label>
+          <label id="slider-label" for="slider"></label>
           <input
             type="range"
             name="slider"
@@ -29,7 +34,7 @@
           />
         </div>
       </div>
-      <div class="canvas-container"></div>
+      <div class="canvas-container" draggable="false"></div>
     </main>
     <footer>
       <p>
@@ -37,6 +42,5 @@
         <span><a href="https://github.com/jaysonhaddon">GitHub</a></span>
       </p>
     </footer>
-    <script src="./script/script.js"></script>
   </body>
 </html>

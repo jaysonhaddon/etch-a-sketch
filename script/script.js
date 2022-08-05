@@ -4,35 +4,41 @@ const colorBtn = document.querySelector("#color");
 const rainbowBtn = document.querySelector("#rainbow");
 const eraserBtn = document.querySelector("#eraser");
 const resetBtn = document.querySelector("#reset");
-const sliderLabel = document.querySelector("label");
+const sliderLabel = document.querySelector("#slider-label");
 const slider = document.querySelector("#slider");
+const colorPicker = document.querySelector("#colorpicker");
 let rowSize = slider.value;
 let activeBtn = colorBtn;
-let defaultColor = colorBtn.value;
+let defaultColor = colorPicker.value;
 let currentColor = defaultColor;
 let eraserColor = eraserBtn.value;
 let rainbowActive = false;
 let mouseDown = false;
 
-window.addEventListener("mousedown", () => {
+document.body.addEventListener("mousedown", () => {
   mouseDown = true;
 });
 
-window.addEventListener("mouseup", () => {
+document.body.addEventListener("mouseup", () => {
   mouseDown = false;
 });
+
+window.onload = () => {
+  createGrid(rowSize);
+  updateSliderLabel();
+};
 
 colorBtn.addEventListener("click", () => {
   setActiveBtn(colorBtn);
   rainbowActive = false;
-  currentColor = defaultColor;
+  currentColor = colorPicker.value;
 });
 
 rainbowBtn.addEventListener("click", () => {
   setActiveBtn(rainbowBtn);
   if (rainbowActive) {
     rainbowActive = false;
-    currentColor = defaultColor;
+    currentColor = colorPicker.value;
   } else {
     rainbowActive = true;
   }
@@ -45,12 +51,8 @@ eraserBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-  setActiveBtn(resetBtn);
-  rainbowActive = false;
-  currentColor = defaultColor;
   destroyGrid();
   createGrid(rowSize);
-  setTimeout(resetBtnBlink, 300);
 });
 
 slider.addEventListener("input", updateSliderLabel);
@@ -60,8 +62,9 @@ slider.addEventListener("mouseup", () => {
   createGrid(rowSize);
 });
 
-createGrid(rowSize);
-updateSliderLabel();
+colorPicker.addEventListener("change", () => {
+  currentColor = colorPicker.value;
+});
 
 function createGrid(rowSize) {
   let boxWidth = calculateWidth(rowSize, canvasWidth);
@@ -70,6 +73,7 @@ function createGrid(rowSize) {
     let newBox = document.createElement("div");
     newBox.classList.add("canvas-box");
     newBox.style.width = `${boxWidth}%`;
+    newBox.draggable = false;
     newBox.addEventListener("mousedown", singleColor);
     newBox.addEventListener("mouseover", hoverColor);
     canvasContainer.appendChild(newBox);
@@ -124,9 +128,4 @@ function setActiveBtn(btn) {
     activeBtn = btn;
     activeBtn.classList.add("active");
   }
-}
-
-function resetBtnBlink() {
-  resetBtn.classList.remove("active");
-  setActiveBtn(colorBtn);
 }
