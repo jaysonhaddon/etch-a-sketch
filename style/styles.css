@@ -103,18 +103,21 @@ button {
 }
 
 .canvas-container {
-  padding: 0;
+  border: none;
   box-shadow: 1px 1px 5px black, -1px -1px 5px black;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
   flex-shrink: 0;
-  display: flex;
-  flex-wrap: wrap;
   width: 500px;
   height: 500px;
   user-select: none;
 }
 
 .canvas-box {
+  border: none;
+  background-color: var(--light-font-color);
+  display: inline-block;
   margin: 0;
   padding: 0;
-  background-color: var(--light-font-color);
 }

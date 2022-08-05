@@ -68,15 +68,19 @@ colorPicker.addEventListener("change", () => {
 
 function createGrid(rowSize) {
   let boxWidth = calculateWidth(rowSize, canvasWidth);
-  let totalBoxes = rowSize ** 2;
-  for (let i = 0; i < totalBoxes; i++) {
-    let newBox = document.createElement("div");
-    newBox.classList.add("canvas-box");
-    newBox.style.width = `${boxWidth}%`;
-    newBox.draggable = false;
-    newBox.addEventListener("mousedown", singleColor);
-    newBox.addEventListener("mouseover", hoverColor);
-    canvasContainer.appendChild(newBox);
+  let boxHeight = calculateWidth(rowSize, canvasWidth);
+  console.log(boxWidth, boxHeight);
+  for (let row = 0; row < rowSize; row++) {
+    for (let column = 0; column < rowSize; column++) {
+      let newBox = document.createElement("div");
+      newBox.classList.add("canvas-box");
+      newBox.style.width = `${boxWidth}px`;
+      newBox.style.height = `${boxHeight}px`;
+      newBox.draggable = false;
+      newBox.addEventListener("mousedown", singleColor);
+      newBox.addEventListener("mouseover", hoverColor);
+      canvasContainer.appendChild(newBox);
+    }
   }
 }
 
@@ -89,9 +93,8 @@ function destroyGrid() {
 }
 
 function calculateWidth(numBoxes, width) {
-  let pixelWidth = width / numBoxes;
-  let percentage = (pixelWidth / width) * 100;
-  return percentage;
+  let pixelDimensions = width / numBoxes;
+  return pixelDimensions;
 }
 
 function singleColor(e) {
