@@ -7,7 +7,7 @@ const resetBtn = document.querySelector("#reset");
 const sliderLabel = document.querySelector("#slider-label");
 const slider = document.querySelector("#slider");
 const colorPicker = document.querySelector("#colorpicker");
-let rowSize = slider.value;
+let colRowSize = slider.value;
 let activeBtn = colorBtn;
 let defaultColor = colorPicker.value;
 let currentColor = defaultColor;
@@ -24,7 +24,7 @@ document.body.addEventListener("mouseup", () => {
 });
 
 window.onload = () => {
-  createGrid(rowSize);
+  createGrid(colRowSize);
   updateSliderLabel();
 };
 
@@ -52,35 +52,31 @@ eraserBtn.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", () => {
   destroyGrid();
-  createGrid(rowSize);
+  createGrid(colRowSize);
 });
 
 slider.addEventListener("input", updateSliderLabel);
 
 slider.addEventListener("mouseup", () => {
   destroyGrid();
-  createGrid(rowSize);
+  createGrid(colRowSize);
 });
 
 colorPicker.addEventListener("change", () => {
   currentColor = colorPicker.value;
 });
 
-function createGrid(rowSize) {
-  let boxWidth = calculateWidth(rowSize, canvasWidth);
-  let boxHeight = calculateWidth(rowSize, canvasWidth);
-  console.log(boxWidth, boxHeight);
-  for (let row = 0; row < rowSize; row++) {
-    for (let column = 0; column < rowSize; column++) {
-      let newBox = document.createElement("div");
-      newBox.classList.add("canvas-box");
-      newBox.style.width = `${boxWidth}px`;
-      newBox.style.height = `${boxHeight}px`;
-      newBox.draggable = false;
-      newBox.addEventListener("mousedown", singleColor);
-      newBox.addEventListener("mouseover", hoverColor);
-      canvasContainer.appendChild(newBox);
-    }
+function createGrid(size) {
+  canvasContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  canvasContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  let totalAmount = size ** 2;
+  for (let i = 0; i < totalAmount; i++) {
+    let newBox = document.createElement("div");
+    newBox.classList.add("canvas-box");
+    newBox.draggable = false;
+    newBox.addEventListener("mousedown", singleColor);
+    newBox.addEventListener("mouseover", hoverColor);
+    canvasContainer.appendChild(newBox);
   }
 }
 
@@ -118,8 +114,8 @@ function randomColor() {
 }
 
 function updateSliderLabel() {
-  rowSize = slider.value;
-  sliderLabel.textContent = `${rowSize} X ${rowSize}`;
+  colRowSize = slider.value;
+  sliderLabel.textContent = `${colRowSize} X ${colRowSize}`;
 }
 
 function setActiveBtn(btn) {
