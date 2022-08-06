@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 :root {
-  --main-bg-color: #dff6ff;
+  --main-bg-color: rgb(184, 215, 234);
   --head-foot-color: #06283d;
-  --sidebar-color: #47b5ff;
+  --sidebar-color: rgb(105, 174, 216);
   --light-font-color: white;
 }
 
